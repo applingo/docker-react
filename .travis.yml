@@ -16,11 +16,12 @@ before_install:
   - ssh-add ./deploy_key
   # test ssh connection for: https://github.com/dwyl/learn-travis/issues/42
   - ssh -i ./deploy_key centos@140.227.122.189 pwd
-  - docker build -t applingo/docker-react -f Dockerfile .
+  #- docker build -t applingo/docker-react -f Dockerfile .
 
 script:
+  - docker-compose up -d
   #- docker run -e CI=true applingo/docker-react npm run test -- --coverage
-  - docker run -e CI=true applingo/docker-react
+  #- docker run -e CI=true applingo/docker-react
 deploy:
   - provider: script
     skip_cleanup: true
